@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="max-w-3xl mx-auto p-4">
         <div>
             <h2>Todo app</h2>
             <add-item-form />

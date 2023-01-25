@@ -1,9 +1,11 @@
 <template>
     <div>
-        <input type="text" v-model="item.name" />
-        <font-awesome-icon
-            icon="plus-square"
-        />
+        <input type="text" v-model="item.name" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" />
+        <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline block mt-3" :class="[ item.name ? 'enabled' : 'disabled' ]">
+            <font-awesome-icon
+                icon="plus"
+            /> Toevoegen
+        </button>
     </div>
 </template>
 <script>
