@@ -20297,6 +20297,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -20304,6 +20307,23 @@ __webpack_require__.r(__webpack_exports__);
         name: ""
       }
     };
+  },
+  methods: {
+    addItem: function addItem() {
+      var _this = this;
+      if (this.item.name == '') {
+        return;
+      }
+      axios__WEBPACK_IMPORTED_MODULE_0___default().post('api/item/store', {
+        item: this.item
+      }).then(function (response) {
+        if (response.status == 201) {
+          _this.item.name = "";
+        }
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    }
   }
 });
 
@@ -20355,7 +20375,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }),
     "class": "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
   }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.item.name]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline block mt-3", [_ctx.item.name ? 'enabled' : 'disabled']])
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline block mt-3", [_ctx.item.name ? 'enabled' : 'disabled']]),
+    onClick: _cache[1] || (_cache[1] = function ($event) {
+      return $options.addItem();
+    })
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_font_awesome_icon, {
     icon: "plus"
   }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Toevoegen ")], 2 /* CLASS */)]);
@@ -52910,6 +52933,18 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /******/ 				}
 /******/ 			}
 /******/ 			return result;
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/compat get default export */
+/******/ 	(() => {
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__webpack_require__.n = (module) => {
+/******/ 			var getter = module && module.__esModule ?
+/******/ 				() => (module['default']) :
+/******/ 				() => (module);
+/******/ 			__webpack_require__.d(getter, { a: getter });
+/******/ 			return getter;
 /******/ 		};
 /******/ 	})();
 /******/ 	
