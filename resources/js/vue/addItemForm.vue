@@ -1,5 +1,5 @@
 <template>
     <div>
-        Form
+        <input type="text" />
     </div>
 </template>
