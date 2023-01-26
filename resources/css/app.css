@@ -1,3 +1,20 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+button.enabled {
+    pointer-events: all;
+    opacity: 1;
+    cursor: pointer;
+}
+
+button.disabled {
+    pointer-events: none;
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.todoItem {
+    display: grid;
+    grid-template-columns: 50px 1fr 50px;
+}
