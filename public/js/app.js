@@ -20319,6 +20319,7 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (response) {
         if (response.status == 201) {
           _this.item.name = "";
+          _this.$emit('reloadlist');
         }
       })["catch"](function (error) {
         console.log(error);
@@ -20385,8 +20386,35 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ["item"]
+  props: ["item"],
+  methods: {
+    updateCheck: function updateCheck() {
+      var _this = this;
+      axios__WEBPACK_IMPORTED_MODULE_0___default().put('api/item/' + this.item.id, {
+        item: this.item
+      }).then(function (response) {
+        if (response.status == 200) {
+          _this.$emit('itemchanged');
+        }
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    removeItem: function removeItem() {
+      var _this2 = this;
+      axios__WEBPACK_IMPORTED_MODULE_0___default()["delete"]('api/item/' + this.item.id).then(function (response) {
+        if (response.status == 200) {
+          _this2.$emit('itemchanged');
+        }
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    }
+  }
 });
 
 /***/ }),
@@ -20435,7 +20463,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }),
     "class": "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-red-300 focus:ring focus:ring-red-200 focus:ring-opacity-50"
   }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.item.name]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline block mt-3", [_ctx.item.name ? 'enabled' : 'disabled']]),
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline block mt-3", [_ctx.item.name ? 'pointer-events-auto opacity-100 cursor-pointer' : 'pointer-events-none opacity-50 cursor-not-allowed']]),
     onClick: _cache[1] || (_cache[1] = function ($event) {
       return $options.addItem();
     })
@@ -20469,8 +20497,15 @@ var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_add_item_form = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("add-item-form");
   var _component_list_view = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("list-view");
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [_hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_add_item_form)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_list_view, {
-    items: _ctx.items
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [_hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_add_item_form, {
+    onReloadlist: _cache[0] || (_cache[0] = function ($event) {
+      return $options.getList();
+    })
+  })]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_list_view, {
+    items: _ctx.items,
+    onReloadlist: _cache[1] || (_cache[1] = function ($event) {
+      return $options.getList();
+    })
   }, null, 8 /* PROPS */, ["items"])]);
 }
 
@@ -20492,11 +20527,11 @@ __webpack_require__.r(__webpack_exports__);
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_font_awesome_icon = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("font-awesome-icon");
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([$props.item.completed ? 'border-green-500' : '', 'border rounded-md border-gray-300 p-2 mt-1 shadow-sm todoItem'])
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([$props.item.completed ? 'border-green-500' : '', 'border rounded-md border-gray-300 p-2 mt-1 shadow-sm grid todoItem'])
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "checkbox",
     onChange: _cache[0] || (_cache[0] = function ($event) {
-      return _ctx.updateCheck();
+      return $options.updateCheck();
     }),
     "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
       return $props.item.completed = $event;
@@ -20506,7 +20541,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)($props.item.completed ? 'text-green-500 line-through' : '')
   }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.item.name), 3 /* TEXT, CLASS */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     onClick: _cache[2] || (_cache[2] = function ($event) {
-      return _ctx.removeItem();
+      return $options.removeItem();
     })
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_font_awesome_icon, {
     icon: "trash",
@@ -20535,7 +20570,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
       key: index
     }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_list_item, {
-      item: item
+      item: item,
+      onItemchanged: _cache[0] || (_cache[0] = function ($event) {
+        return _ctx.$emit('reloadlist');
+      })
     }, null, 8 /* PROPS */, ["item"])]);
   }), 128 /* KEYED_FRAGMENT */))]);
 }

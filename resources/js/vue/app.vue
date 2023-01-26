@@ -2,9 +2,9 @@
     <div class="max-w-3xl mx-auto p-4">
         <div>
             <h2 class="text-lg font-bold">Todo app</h2>
-            <add-item-form />
+            <add-item-form v-on:reloadlist="getList()" />
         </div>
-        <list-view :items="items" />
+        <list-view :items="items" v-on:reloadlist="getList()" />
     </div>
 </template>
 <script>
