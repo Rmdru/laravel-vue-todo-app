@@ -20536,6 +20536,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
       return $props.item.completed = $event;
     }),
+    "true-value": "1",
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["my-auto rounded-md border-gray-300 shadow-sm focus:ring focus:ring-opacity-50", $props.item.completed ? 'text-green-500 focus:border-green-300 focus:ring-green-200' : 'text-red-500 focus:border-red-300 focus:ring-red-200'])
   }, null, 34 /* CLASS, HYDRATE_EVENTS */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, $props.item.completed]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)($props.item.completed ? 'text-green-500 line-through' : '')
