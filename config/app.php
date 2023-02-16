@@ -54,7 +54,7 @@ return [
 
     'url' => env('APP_URL', 'https://laravel-vue-todo-app-rmdru.vercel.app/'),
 
-    'asset_url' => env('ASSET_URL', null),
+    'asset_url' => env('ASSET_URL', 'https://laravel-vue-todo-app-rmdru.vercel.app/'),
 
     /*
     |--------------------------------------------------------------------------
